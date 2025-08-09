@@ -90,7 +90,6 @@ public class IgnorePickUpConfigScreen extends Screen {
                 if (allItemsLower.get(i).contains(q)) list.add(allItems.get(i));
             }
         }
-        list.sort(String::compareTo);
         viewItems = list;
     }
 
@@ -107,7 +106,7 @@ public class IgnorePickUpConfigScreen extends Screen {
         pageSize = columns * rows;
         int gridLeft = 16;
         int gridRight = this.width - 16;
-    int gridTop = 71; // shifted down to sit ~20px below the info line at y=51
+        int gridTop = 71; // shifted down to sit ~20px below the info line at y=51
         int cellW = (gridRight - gridLeft - (columns - 1) * 6) / columns;
         int cellH = 18;
 
@@ -145,7 +144,6 @@ public class IgnorePickUpConfigScreen extends Screen {
 
     @Override
     public void onClose() {
-        Config.save();
     Config.endBatch();
         super.onClose();
     }

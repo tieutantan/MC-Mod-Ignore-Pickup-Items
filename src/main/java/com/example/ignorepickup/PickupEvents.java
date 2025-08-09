@@ -21,13 +21,16 @@ public final class PickupEvents {
         ItemStack stack = event.getItemEntity().getItem();
         if (stack.isEmpty()) return;
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        String idStr = id.toString();
+        
     // Track items seen so they appear in the config list without immediate I/O
-    Config.addKnownEphemeral(id.toString());
+    Config.addKnownEphemeral(idStr);
         Set<String> active = Config.getIgnoredActive();
 
-        if (active.contains(id.toString())) {
+        if (active.contains(idStr)) {
             event.setCanPickup(TriState.FALSE);
-            System.out.println("[IgnorePickup] Denied pickup: " + id);
+            // todo: Debug Only
+            // System.out.println("[IgnorePickup] Denied pickup: " + id);
         }
     }
 }

@@ -9,6 +9,5 @@ public final class IgnorePickUp {
     public IgnorePickUp() {
         Config.load();
     NeoForge.EVENT_BUS.register(new PickupEvents());
-    NeoForge.EVENT_BUS.addListener(IgnorePickupCommands::onRegisterCommands);
     }
 }
