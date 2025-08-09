@@ -1,0 +1,13 @@
+{
+  "itemGroup.ignorepickup": "Example Mod Tab",
+  "block.ignorepickup.example_block": "Example Block",
+  "item.ignorepickup.example_item": "Example Item",
+
+  "ignorepickup.configuration.title": "Ignore Pick Up Configs",
+  "ignorepickup.configuration.section.ignorepickup.common.toml": "Ignore Pick Up Configs",
+  "ignorepickup.configuration.section.ignorepickup.common.toml.title": "Ignore Pick Up Configs",
+  "ignorepickup.configuration.items": "Item List",
+  "ignorepickup.configuration.logDirtBlock": "Log Dirt Block",
+  "ignorepickup.configuration.magicNumberIntroduction": "Magic Number Text",
+  "ignorepickup.configuration.magicNumber": "Magic Number"
+}
