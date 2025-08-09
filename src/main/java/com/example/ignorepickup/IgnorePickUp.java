@@ -5,7 +5,7 @@ import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(IgnorePickUp.MODID)
 public final class IgnorePickUp {
-    public static final String MODID = "ignorepickuptantn";
+    public static final String MODID = "ignorepickupitems_tantn";
     public IgnorePickUp() {
         Config.load();
     NeoForge.EVENT_BUS.register(new PickupEvents());
