@@ -16,7 +16,7 @@ public class IgnorePickUpClient {
     private static final net.minecraft.client.KeyMapping OPEN_CONFIG = new net.minecraft.client.KeyMapping(
             "key.ignorepickup.config",
             GLFW.GLFW_KEY_I,
-            "key.categories.misc"
+            net.minecraft.client.KeyMapping.Category.MISC
     );
 
     @SubscribeEvent

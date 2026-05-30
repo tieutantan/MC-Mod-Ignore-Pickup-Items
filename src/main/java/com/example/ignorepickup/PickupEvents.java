@@ -2,10 +2,10 @@ package com.example.ignorepickup;
 
 import java.util.Set;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.TriState;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 
 /**
@@ -20,7 +20,7 @@ public final class PickupEvents {
 
         ItemStack stack = event.getItemEntity().getItem();
         if (stack.isEmpty()) return;
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        Identifier id = BuiltInRegistries.ITEM.getKey(stack.getItem());
         String idStr = id.toString();
         
     // Track items seen so they appear in the config list without immediate I/O

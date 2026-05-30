@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.192'
+    id 'net.neoforged.gradle.userdev' version '7.1.36'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -24,8 +24,8 @@ base {
     archivesName = mod_id
 }
 
-// Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+// Mojang ships Java 25 to end users in 26.1.2, so mods should target Java 25.
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 //minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
@@ -67,7 +67,7 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
     }
 
-    data {
+    clientData {
         // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
         // workingDirectory project.file('run-data')
 
@@ -128,7 +128,6 @@ tasks.withType(ProcessResources).configureEach {
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
-            loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
@@ -140,6 +139,25 @@ tasks.withType(ProcessResources).configureEach {
 
     filesMatching(['META-INF/neoforge.mods.toml']) {
         expand replaceProperties
+    }
+}
+
+// Output JAR to project root directory
+tasks.named('jar').configure {
+    destinationDirectory = layout.projectDirectory
+}
+
+// Auto-increment patch version after each successful build
+tasks.named('build').configure {
+    doLast {
+        def propsFile = project.file('gradle.properties')
+        def content = propsFile.text
+        def currentVersion = version as String
+        def parts = currentVersion.split('\\.')
+        parts[-1] = String.valueOf(parts[-1].toInteger() + 1)
+        def newVersion = parts.join('.')
+        propsFile.text = content.replace("mod_version=${currentVersion}", "mod_version=${newVersion}")
+        logger.lifecycle(">>> Version auto-incremented to ${newVersion} (next build)")
     }
 }
 

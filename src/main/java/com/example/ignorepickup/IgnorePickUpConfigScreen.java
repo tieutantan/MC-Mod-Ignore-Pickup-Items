@@ -1,12 +1,12 @@
 package com.example.ignorepickup;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class IgnorePickUpConfigScreen extends Screen {
     private EditBox searchBox;
@@ -32,7 +32,7 @@ public class IgnorePickUpConfigScreen extends Screen {
         allItems = new java.util.ArrayList<>();
     allItemsLower = new java.util.ArrayList<>();
         for (var item : BuiltInRegistries.ITEM) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(item);
+            Identifier id = BuiltInRegistries.ITEM.getKey(item);
             if (id != null) {
                 String s = id.toString();
                 allItems.add(s);
@@ -149,14 +149,14 @@ public class IgnorePickUpConfigScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(guiGraphics, mouseX, mouseY, delta);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 6, 0xFFFFFF);
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
+        this.extractBackground(guiGraphics, mouseX, mouseY, delta);
+        super.extractRenderState(guiGraphics, mouseX, mouseY, delta);
+        guiGraphics.centeredText(this.font, this.title, this.width / 2, 6, 0xFFFFFF);
         // Page info
     int total = viewItems == null ? 0 : viewItems.size();
         int maxPage = total == 0 ? 0 : (total - 1) / pageSize;
     String info = "Items: " + total + "  Page: " + (Math.min(page, maxPage) + 1) + "/" + (maxPage + 1);
-    guiGraphics.drawString(this.font, info, 16, 51, 0xAAAAAA);
+    guiGraphics.text(this.font, info, 16, 51, 0xAAAAAA);
     }
 }
