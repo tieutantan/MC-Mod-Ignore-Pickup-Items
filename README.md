@@ -4,9 +4,9 @@
 - Ignore items you don't want to pick up — press **(I)** to open the ignore list.
 
 ## Build Commands
-- `.\gradlew --refresh-dependencies`
-- `.\gradlew clean`
-- `.\gradlew runClient`
-- `.\gradlew build`
+- `./gradlew --refresh-dependencies`
+- `./gradlew clean`
+- `./gradlew runClient`
+- `./gradlew build`
 
 > The mod version patch number is auto-incremented after each successful build.
