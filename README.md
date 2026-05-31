@@ -10,3 +10,10 @@
 - `./gradlew build`
 
 > The mod version patch number is auto-incremented after each successful build.
+
+## Build Output
+After running `./gradlew build`, the mod jar file is generated at:
+```
+build/libs/MC-Mod-Ignore-Pickup-Items-<version>.jar
+```
+Copy it to your Minecraft `mods/` folder to install.

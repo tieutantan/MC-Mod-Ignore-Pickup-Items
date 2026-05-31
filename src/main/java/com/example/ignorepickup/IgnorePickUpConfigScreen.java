@@ -150,7 +150,6 @@ public class IgnorePickUpConfigScreen extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
-        this.extractBackground(guiGraphics, mouseX, mouseY, delta);
         super.extractRenderState(guiGraphics, mouseX, mouseY, delta);
         guiGraphics.centeredText(this.font, this.title, this.width / 2, 6, 0xFFFFFF);
         // Page info
